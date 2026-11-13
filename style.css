@@ -1,0 +1,370 @@
+
+/* ============================================================
+   TEMAS — NOVA IDENTIDADE VISUAL
+   Estrutura original preservada
+   ============================================================ */
+
+/* OCEANO */
+body,
+body:has(#t-oceano:checked) {
+  --fundo: #dff6ff;
+  --superficie: #ffffff;
+  --texto: #073b5c;
+  --suave: #397b99;
+  --destaque: #0077b6;
+  --sobre-destaque: #ffffff;
+  --borda: 1px solid #8ed5ed;
+  --raio: 20px;
+  --sombra: 0 10px 30px rgba(0, 119, 182, .16);
+  --fonte-titulo: "Trebuchet MS", sans-serif;
+  --fonte-texto: "Segoe UI", sans-serif;
+  --peso-titulo: 700;
+}
+
+/* FLORESTA */
+body:has(#t-floresta:checked) {
+  --fundo: #e4edda;
+  --superficie: #f7f9ef;
+  --texto: #203d2b;
+  --suave: #66836b;
+  --destaque: #36734b;
+  --sobre-destaque: #ffffff;
+  --borda: 2px solid #a8c49b;
+  --raio: 12px;
+  --sombra: 0 8px 22px rgba(35, 75, 45, .15);
+  --fonte-titulo: Georgia, serif;
+  --fonte-texto: "Trebuchet MS", sans-serif;
+  --peso-titulo: 700;
+}
+
+/* ESPAÇO */
+body:has(#t-espaco:checked) {
+  --fundo: #100d2b;
+  --superficie: #211b48;
+  --texto: #f0edff;
+  --suave: #b0a8df;
+  --destaque: #a855f7;
+  --sobre-destaque: #ffffff;
+  --borda: 1px solid #6548a8;
+  --raio: 22px;
+  --sombra: 0 0 25px rgba(168, 85, 247, .22);
+  --fonte-titulo: "Trebuchet MS", sans-serif;
+  --fonte-texto: "Segoe UI", sans-serif;
+  --peso-titulo: 700;
+}
+
+/* RETRÔ */
+body:has(#t-retro:checked) {
+  --fundo: #f7d66d;
+  --superficie: #fff4cf;
+  --texto: #29213c;
+  --suave: #68536c;
+  --destaque: #e84a5f;
+  --sobre-destaque: #ffffff;
+  --borda: 3px solid #29213c;
+  --raio: 3px;
+  --sombra: 6px 6px 0 #29213c;
+  --fonte-titulo: Impact, "Arial Black", sans-serif;
+  --fonte-texto: "Courier New", monospace;
+  --peso-titulo: 400;
+}
+
+/* DOCE */
+body:has(#t-doce:checked) {
+  --fundo: #fff0f6;
+  --superficie: #ffffff;
+  --texto: #713858;
+  --suave: #b06b91;
+  --destaque: #ed70ad;
+  --sobre-destaque: #ffffff;
+  --borda: 2px solid #ffc4df;
+  --raio: 30px;
+  --sombra: 0 9px 22px rgba(237, 112, 173, .18);
+  --fonte-titulo: "Trebuchet MS", sans-serif;
+  --fonte-texto: "Segoe UI", sans-serif;
+  --peso-titulo: 700;
+}
+
+/* ============================================================
+   BASE
+   ============================================================ */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--fundo);
+  color: var(--texto);
+  font-family: var(--fonte-texto);
+  font-size: 1.1rem;
+  line-height: 1.6;
+  transition: background .4s, color .4s;
+}
+
+h1, h2, h3 {
+  font-family: var(--fonte-titulo);
+  font-weight: var(--peso-titulo);
+  line-height: 1.15;
+  margin: 0 0 .6em;
+}
+
+h1 {
+  font-size: clamp(2.4rem, 8vw, 4.5rem);
+}
+
+h2 {
+  font-size: clamp(1.5rem, 4vw, 2.1rem);
+}
+
+h3 {
+  font-size: 1.3rem;
+}
+
+p {
+  margin: 0 0 1em;
+}
+
+code {
+  font-family: "Courier New", monospace;
+  font-size: .9em;
+  background: var(--fundo);
+  border: var(--borda);
+  border-width: 1px;
+  border-radius: calc(var(--raio) / 4);
+  padding: .05em .4em;
+}
+
+main,
+.topo,
+.rodape {
+  width: min(100% - 2rem, 62rem);
+  margin-inline: auto;
+}
+
+/* ============================================================
+   SELETOR DE TEMAS
+   ============================================================ */
+
+.topo {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  padding: .75rem 0;
+  background: var(--fundo);
+  backdrop-filter: blur(12px);
+}
+
+.seletor {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: .5rem;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.seletor legend {
+  float: left;
+  margin-right: .75rem;
+  padding: 0;
+  font-weight: 700;
+}
+
+.seletor input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.seletor label {
+  cursor: pointer;
+  padding: .45rem 1rem;
+  background: var(--superficie);
+  color: var(--texto);
+  border: var(--borda);
+  border-radius: calc(var(--raio) * 2);
+  font-family: var(--fonte-titulo);
+  font-size: 1rem;
+  transition: .25s ease;
+}
+
+.seletor label:hover {
+  transform: translateY(-3px);
+  border-color: var(--destaque);
+}
+
+.seletor input:checked + label {
+  background: var(--destaque);
+  color: var(--sobre-destaque);
+  border-color: var(--destaque);
+  box-shadow: var(--sombra);
+}
+
+.seletor input:focus-visible + label {
+  outline: 3px solid var(--destaque);
+  outline-offset: 3px;
+}
+
+/* ============================================================
+   SEÇÕES
+   ============================================================ */
+
+.hero {
+  padding: 3.5rem 2rem;
+  background: var(--superficie);
+  border: var(--borda);
+  border-radius: var(--raio);
+  box-shadow: var(--sombra);
+  margin-top: 1.5rem;
+}
+
+.lead {
+  max-width: 36rem;
+  font-size: 1.3rem;
+  color: var(--suave);
+}
+
+main > section {
+  margin-bottom: 3.5rem;
+}
+
+.cartoes {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+  gap: 1.25rem;
+}
+
+.cartoes > h2 {
+  grid-column: 1 / -1;
+  margin-bottom: 0;
+}
+
+.cartao {
+  padding: 1.5rem;
+  background: var(--superficie);
+  border: var(--borda);
+  border-radius: var(--raio);
+  box-shadow: var(--sombra);
+  transition: transform .25s, box-shadow .25s;
+}
+
+.cartao:hover {
+  transform: translateY(-5px);
+}
+
+.cartao p {
+  margin: 0;
+  color: var(--suave);
+}
+
+/* ============================================================
+   TABELA
+   ============================================================ */
+
+.rolagem {
+  overflow-x: auto;
+  background: var(--superficie);
+  border: var(--borda);
+  border-radius: var(--raio);
+  box-shadow: var(--sombra);
+}
+
+table {
+  width: 100%;
+  min-width: 34rem;
+  border-collapse: collapse;
+  text-align: left;
+}
+
+th, td {
+  padding: .85rem 1.1rem;
+}
+
+th {
+  background: var(--destaque);
+  color: var(--sobre-destaque);
+  font-family: var(--fonte-titulo);
+  font-weight: var(--peso-titulo);
+}
+
+tbody tr + tr td {
+  border-top: 1px solid var(--fundo);
+}
+
+/* ============================================================
+   DESAFIO
+   ============================================================ */
+
+.desafio ol {
+  margin: 0;
+  padding: 1.5rem 1.5rem 1.5rem 3rem;
+  background: var(--superficie);
+  border: var(--borda);
+  border-radius: var(--raio);
+  box-shadow: var(--sombra);
+}
+
+.desafio li + li {
+  margin-top: .6rem;
+}
+
+.desafio li::marker {
+  color: var(--destaque);
+  font-weight: 700;
+}
+
+/* ============================================================
+   RODAPÉ
+   ============================================================ */
+
+.rodape {
+  padding: 1.5rem 0 3rem;
+  color: var(--suave);
+  font-size: .95rem;
+}
+
+/* ============================================================
+   RESPONSIVIDADE
+   ============================================================ */
+
+@media (max-width: 600px) {
+  .seletor {
+    gap: .4rem;
+  }
+
+  .seletor legend {
+    width: 100%;
+    margin-bottom: .5rem;
+  }
+
+  .seletor label {
+    padding: .4rem .7rem;
+    font-size: .9rem;
+  }
+
+  .hero {
+    padding: 2rem 1.2rem;
+  }
+
+  .cartoes {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ============================================================
+   ACESSIBILIDADE
+   ============================================================ */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    transition: none !important;
+    animation: none !important;
+  }
+}

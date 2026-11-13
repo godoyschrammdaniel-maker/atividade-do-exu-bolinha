@@ -1,0 +1,242 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#0077b6">
+
+  <title>Meu Projeto - Temas</title>
+
+  <link rel="stylesheet" href="style.css">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+</head>
+
+<body>
+
+  <!-- CABEÇALHO E SELETOR DE TEMAS -->
+  <header class="topo">
+
+    <h1>Meu Universo</h1>
+
+    <fieldset class="seletor">
+      <legend>Escolha seu tema:</legend>
+
+      <input type="radio" name="tema" id="t-oceano" value="oceano">
+      <label for="t-oceano">🌊 Oceano</label>
+
+      <input type="radio" name="tema" id="t-floresta" value="floresta">
+      <label for="t-floresta">🌳 Floresta</label>
+
+      <input type="radio" name="tema" id="t-espaco" value="espaco">
+      <label for="t-espaco">🚀 Espaço</label>
+
+      <input type="radio" name="tema" id="t-retro" value="retro">
+      <label for="t-retro">🕹️ Retrô</label>
+
+      <input type="radio" name="tema" id="t-doce" value="doce">
+      <label for="t-doce">🍬 Doce</label>
+
+    </fieldset>
+
+  </header>
+
+  <!-- CONTEÚDO PRINCIPAL -->
+  <main>
+
+    <!-- APRESENTAÇÃO -->
+    <section class="hero">
+
+      <h2>Bem-vindo ao meu projeto!</h2>
+
+      <p class="lead">
+        Explore diferentes estilos visuais e escolha aquele
+        que mais combina com você. Cada tema possui cores,
+        fontes e personalidades diferentes.
+      </p>
+
+    </section>
+
+    <!-- CARTÕES -->
+    <section class="cartoes">
+
+      <h2>Conheça os temas</h2>
+
+      <article class="cartao">
+        <h3>🌊 Oceano</h3>
+        <p>
+          Um ambiente inspirado no mar, com tons de azul,
+          tranquilidade e uma aparência moderna.
+        </p>
+      </article>
+
+      <article class="cartao">
+        <h3>🌳 Floresta</h3>
+        <p>
+          Um visual inspirado na natureza, com cores verdes,
+          tons terrosos e uma atmosfera natural.
+        </p>
+      </article>
+
+      <article class="cartao">
+        <h3>🚀 Espaço</h3>
+        <p>
+          Um universo futurista com cores escuras,
+          detalhes luminosos e estilo tecnológico.
+        </p>
+      </article>
+
+      <article class="cartao">
+        <h3>🕹️ Retrô</h3>
+        <p>
+          Uma viagem ao passado com cores vibrantes,
+          fontes marcantes e estilo de videogame clássico.
+        </p>
+      </article>
+
+      <article class="cartao">
+        <h3>🍬 Doce</h3>
+        <p>
+          Um ambiente delicado, com tons de rosa,
+          formas arredondadas e aparência divertida.
+        </p>
+      </article>
+
+    </section>
+
+    <!-- TABELA -->
+    <section>
+
+      <h2>Comparação dos temas</h2>
+
+      <div class="rolagem">
+
+        <table>
+
+          <thead>
+            <tr>
+              <th>Tema</th>
+              <th>Cor principal</th>
+              <th>Estilo</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr>
+              <td>Oceano</td>
+              <td>Azul</td>
+              <td>Moderno</td>
+            </tr>
+
+            <tr>
+              <td>Floresta</td>
+              <td>Verde</td>
+              <td>Natural</td>
+            </tr>
+
+            <tr>
+              <td>Espaço</td>
+              <td>Roxo</td>
+              <td>Futurista</td>
+            </tr>
+
+            <tr>
+              <td>Retrô</td>
+              <td>Amarelo e vermelho</td>
+              <td>Vintage</td>
+            </tr>
+
+            <tr>
+              <td>Doce</td>
+              <td>Rosa</td>
+              <td>Delicado</td>
+            </tr>
+          </tbody>
+
+        </table>
+
+      </div>
+
+    </section>
+
+    <!-- DESAFIO -->
+    <section class="desafio">
+
+      <h2>Desafio dos temas</h2>
+
+      <ol>
+        <li>Escolha um dos cinco temas.</li>
+        <li>Observe as mudanças de cores e fontes.</li>
+        <li>Experimente todos os estilos disponíveis.</li>
+        <li>Atualize a página e veja se sua escolha foi salva.</li>
+      </ol>
+
+    </section>
+
+  </main>
+
+  <!-- RODAPÉ -->
+  <footer class="rodape">
+
+    <p>Projeto de temas visuais | Desenvolvido com HTML, CSS e JavaScript.</p>
+
+  </footer>
+
+  <!-- FUNCIONALIDADE DE TROCA DE TEMAS -->
+  <script>
+
+    document.addEventListener("DOMContentLoaded", function () {
+
+      const temas = document.querySelectorAll('input[name="tema"]');
+
+      const temaSalvo = localStorage.getItem("temaSelecionado");
+
+      const temaInicial = document.getElementById(
+        temaSalvo && document.getElementById("t-" + temaSalvo)
+          ? "t-" + temaSalvo
+          : "t-oceano"
+      );
+
+      temaInicial.checked = true;
+
+      function aplicarTema(tema) {
+
+        document.body.dataset.tema = tema;
+
+        localStorage.setItem("temaSelecionado", tema);
+
+        const cores = {
+          oceano: "#0077b6",
+          floresta: "#36734b",
+          espaco: "#a855f7",
+          retro: "#e84a5f",
+          doce: "#ed70ad"
+        };
+
+        document.querySelector('meta[name="theme-color"]').content =
+          cores[tema];
+
+      }
+
+      temas.forEach(function (radio) {
+
+        radio.addEventListener("change", function () {
+
+          if (this.checked) {
+            aplicarTema(this.value);
+          }
+
+        });
+
+      });
+
+      aplicarTema(temaInicial.value);
+
+    });
+
+  </script>
+
+</body>
+</html>
